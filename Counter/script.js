@@ -26,9 +26,10 @@ decrement.addEventListener("click", () => {
 });
 
 reset.addEventListener("click", () => {
-  store.dispatch({
-    type: "reset",
-  });
+  store.dispatch({ type: "reset" });
+});
+
+store.subscribe(() => {
   counter = store.getState();
   h1.innerText = counter;
 });
@@ -40,7 +41,7 @@ function reducer(state = 0, action) {
     case "decrement":
       return state - (action.step || 1);
     case "reset":
-      return state;
+      return 0;
 
     default:
       return state;
